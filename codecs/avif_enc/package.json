@@ -1,0 +1,13 @@
+{
+  "name": "avif_enc",
+  "scripts": {
+    "install": "napa",
+    "build": "docker run --rm -v $(pwd):/src trzeci/emscripten ./build.sh"
+  },
+  "napa": {
+    "aom": "git+https://aomedia.googlesource.com/aom#543588dc5c8b036a16d849a25c8fcfab8181c669"
+  },
+  "devDependencies": {
+    "napa": "^3.0.0"
+  }
+}
