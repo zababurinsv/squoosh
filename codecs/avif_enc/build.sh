@@ -5,19 +5,19 @@ apt-get update
 apt-get install -qqy yasm
 
 (
+  rm -rf aom-build
   mkdir -p aom-build
   cd aom-build
   cmake ../node_modules/aom \
-    -DENABLE_CCACHE=1 \
     -DAOM_TARGET_CPU=generic \
+    -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_DOCS=0 \
     -DENABLE_TESTS=0 \
-    -DCONFIG_ACCOUNTING=1 \
-    -DCONFIG_INSPECTION=1 \
-    -DCONFIG_MULTITHREAD=0 \
-    -DCONFIG_RUNTIME_CPU_DETECT=0 \
+    -DENABLE_EXAMPLES=0 \
     -DCONFIG_WEBM_IO=0 \
-    -DCMAKE_BUILD_TYPE=Release \
+    -DCONFIG_ACCOUNTING=0 \
+    -DCONFIG_INSPECTION=0 \
+    -DCONFIG_MULTITHREAD=0 \
     -DCMAKE_TOOLCHAIN_FILE=/emsdk_portable/sdk/cmake/Modules/Platform/Emscripten.cmake
 
   emmake make
@@ -34,4 +34,4 @@ emcc \
   -o ./avif_enc.js \
   -x c++ -std=c++11 \
   avif_enc.cpp \
-  aom-build/libaom.a
+  aom-build/*.a
