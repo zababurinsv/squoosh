@@ -34,4 +34,6 @@ emcc \
   -o ./avif_enc.js \
   -x c++ -std=c++11 \
   avif_enc.cpp \
+  aom-build/CMakeFiles/aom_common_app_util.dir/common/tools_common.c.o \
+  aom-build/CMakeFiles/dump_obu.dir/gen_src/usage_exit.cc.o \
   aom-build/*.a
