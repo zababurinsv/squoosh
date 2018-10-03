@@ -15,6 +15,8 @@ int version() {
 }
 
 void encode(std::string image_in, int width, int height) {
+  uint8_t* image_buffer = (uint8_t*) image_in.c_str();
+
   AvxVideoInfo info;
   aom_image_t raw;
   aom_codec_ctx_t codec;
@@ -36,6 +38,10 @@ void encode(std::string image_in, int width, int height) {
   if (aom_codec_enc_init(&codec, encoder->codec_interface(), &cfg, 0)) {
     die_codec(&codec, "Failed to initialize encoder");
   }
+
+
+  // encode_frame
+  ABGRToI420(image_buffer, width * 4)
 }
 
 EMSCRIPTEN_BINDINGS(my_module) {
